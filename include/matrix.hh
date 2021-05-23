@@ -4,7 +4,9 @@
 
 #include "size.hh"
 
-#include "Prostopadloscian.hh"
+// #include "Prostopadloscian.hh"
+// #include "Graniastoslup6.hh"
+// #include "BrylaGeometryczna.hh"
 #include "vector.hh"
 #include <iostream>
 #include <cstdlib>
@@ -84,13 +86,16 @@ public:
         }
         return rot;
     }
-    Prostopadloscian operator*(Prostopadloscian tmp);
+    // BrylaGeometryczna operator*(BrylaGeometryczna tmp);
+
+    // Graniastoslup operator*(Graniastoslup tmp);
 
     Matrix<SIZE> operator+(Matrix<SIZE> tmp);
     Matrix<SIZE> operator*(Matrix<SIZE> tmp);
     Matrix(double kat); // przelicznik kata na radiany
 
-    void macierzobrotu(double kat, Prostopadloscian &tmp); //macierz zawierajaca funkcje trygonometryczne niezbedne do obrotu Prostopadlosciana
+    // void macierzobrotu(double kat, Prostopadloscian &tmp); //macierz zawierajaca funkcje trygonometryczne niezbedne do obrotu Prostopadlosciana
+
 
     void Gaus();
 
@@ -248,46 +253,24 @@ Matrix<SIZE> Matrix<SIZE>::operator*(Matrix<SIZE> tmp)
 // {
 //     rad = kat * PI /180;
 // }
-template <int SIZE>
-Prostopadloscian Matrix<SIZE>::operator*(Prostopadloscian tmp)
-{
-    Prostopadloscian wynik;
-    for (int i = 0; i < 8; ++i)
-    {
 
-        wynik[i] = *this * tmp[i];
-    }
-    return wynik;
-}
 
-// /*!       **************************************************************************
-//  |  Macierz zawierajaca funkcje trygonometryczne potrzebne do rotacji                               |
-//  |  Argumenty:                                                                                      |
-//  |      Poszczegolne elemety macierzy                                                               |
-//  |  Zwraca:                                                                                         |
-//  |      Odpowiednie funkcje trygonometryczne uzaleznione od kata w radianach(rad)                   |
-//  */
 // template <int SIZE>
-// void Matrix<SIZE>::macierzobrotu(double kat, Prostopadloscian &tmp)
+// Prostopadloscian Matrix<SIZE>::operator*(Prostopadloscian tmp)
 // {
-//     double rad;
-//     rad = kat * PI / 180;
-//     value[0][0] = cos(rad);
-//     value[0][1] = -sin(rad);
-//     value[0][2] = 0;
+//     Prostopadloscian wynik;
+//     for (int i = 0; i < 8; ++i)
+//     {
 
-//     value[1][0] = sin(rad);
-//     value[1][1] = cos(rad);
-//     value[1][2] = 0;
-
-//     value[2][0] = 0;
-//     value[2][1] = 0;
-//     value[2][2] = 1;
-
-//     tmp = *this * tmp;
-//     // return value[1][1];
-//     // return value[0][0];
+//         wynik[i] = *this * tmp[i];
+//     }
+//     return wynik;
 // }
+
+
+
+
+
 
 /*!       
     \brief
@@ -298,25 +281,25 @@ Prostopadloscian Matrix<SIZE>::operator*(Prostopadloscian tmp)
  |      Odpowiednie funkcje trygonometryczne uzaleznione od kata w radianach(rad)                   |
  */
 
-Matrix<3> macierzobrotZ(double kat)
-{
-    Matrix<3> Wynik;
-    double rad;
-    rad = kat * PI / 180;
-    Wynik(0, 0) = cos(rad);
-    Wynik(0, 1) = -sin(rad);
-    Wynik(0, 2) = 0;
+// Matrix<3> macierzobrotZ(double kat)
+// {
+//     Matrix<3> Wynik;
+//     double rad;
+//     rad = kat * PI / 180;
+//     Wynik(0, 0) = cos(rad);
+//     Wynik(0, 1) = -sin(rad);
+//     Wynik(0, 2) = 0;
 
-    Wynik(1, 0) = sin(rad);
-    Wynik(1, 1) = cos(rad);
-    Wynik(1, 2) = 0;
+//     Wynik(1, 0) = sin(rad);
+//     Wynik(1, 1) = cos(rad);
+//     Wynik(1, 2) = 0;
 
-    Wynik(2, 0) = 0;
-    Wynik(2, 1) = 0;
-    Wynik(2, 2) = 1;
+//     Wynik(2, 0) = 0;
+//     Wynik(2, 1) = 0;
+//     Wynik(2, 2) = 1;
 
-    return Wynik;
-}
+//     return Wynik;
+// }
 
 
 
@@ -330,26 +313,25 @@ Matrix<3> macierzobrotZ(double kat)
  |      Odpowiednie funkcje trygonometryczne uzaleznione od kata w radianach(rad)                   |
  */
 
-Matrix<3> macierzobrotY(double kat)
-{
-    Matrix<3> Wynik;
-    double rad;
-    rad = kat * PI / 180;
-    Wynik(0, 0) = cos(rad);
-    Wynik(0, 1) = 0;
-    Wynik(0, 2) = sin(rad);
+// Matrix<3> macierzobrotY(double kat)
+// {
+//     Matrix<3> Wynik;
+//     double rad;
+//     rad = kat * PI / 180;
+//     Wynik(0, 0) = cos(rad);
+//     Wynik(0, 1) = 0;
+//     Wynik(0, 2) = sin(rad);
 
-    Wynik(1, 0) = 0;
-    Wynik(1, 1) = 1;
-    Wynik(1, 2) = 0;
+//     Wynik(1, 0) = 0;
+//     Wynik(1, 1) = 1;
+//     Wynik(1, 2) = 0;
 
-    Wynik(2, 0) = -sin(rad);
-    Wynik(2, 1) = 0;
-    Wynik(2, 2) = cos(rad);
+//     Wynik(2, 0) = -sin(rad);
+//     Wynik(2, 1) = 0;
+//     Wynik(2, 2) = cos(rad);
 
-    return Wynik;
-}
-
+//     return Wynik;
+// }
 
 
 /*!       
@@ -361,25 +343,26 @@ Matrix<3> macierzobrotY(double kat)
  |      Odpowiednie funkcje trygonometryczne uzaleznione od kata w radianach(rad)                   |
  */
 
-Matrix<3> macierzobrotX(double kat)
-{
-    Matrix<3> Wynik;
-    double rad;
-    rad = kat * PI / 180;
-    Wynik(0, 0) = 1;
-    Wynik(0, 1) = 0;
-    Wynik(0, 2) = 0;
+// Matrix<3> macierzobrotX(double kat)
+// {
+//     Matrix<3> Wynik;
+//     double rad;
+//     rad = kat * PI / 180;
+//     Wynik(0, 0) = 1;
+//     Wynik(0, 1) = 0;
+//     Wynik(0, 2) = 0;
 
-    Wynik(1, 0) = 0;
-    Wynik(1, 1) = cos(rad);
-    Wynik(1, 2) = -sin(rad);
+//     Wynik(1, 0) = 0;
+//     Wynik(1, 1) = cos(rad);
+//     Wynik(1, 2) = -sin(rad);
 
-    Wynik(2, 0) = 0;
-    Wynik(2, 1) = sin(rad);
-    Wynik(2, 2) = cos(rad);
+//     Wynik(2, 0) = 0;
+//     Wynik(2, 1) = sin(rad);
+//     Wynik(2, 2) = cos(rad);
 
-    return Wynik;
-}
+//     return Wynik;
+// }
+
 
 
 
@@ -393,44 +376,46 @@ Matrix<3> macierzobrotX(double kat)
  |      Odpowiednie funkcje trygonometryczne uzaleznione od kata w radianach(rad) oraz wartosci wektora bazowego                   |
  */
 
-Matrix<4> cztery(double alfa, double beta, double gamma, Vector<3> size)
-{
-    Matrix<4> Wynik;
-    // double a, b, c;
-    double x,y,z ;
-    alfa = alfa * PI / 180;
-    beta = beta * PI / 180;
-    gamma = gamma * PI / 180;
-    // Vector<3>  size;
-    // size[0]=2;
-    // size[1]=2;
-    // size[2]=2;
-    x= size[0];
-    y= size[1];
-    z= size[2];
+// Matrix<4> cztery(double alfa, double beta, double gamma, Vector<3> size)
+// {
+//     Matrix<4> Wynik;
+//     // double a, b, c;
+//     double x,y,z ;
+//     alfa = alfa * PI / 180;
+//     beta = beta * PI / 180;
+//     gamma = gamma * PI / 180;
+//     // Vector<3>  size;
+//     // size[0]=2;
+//     // size[1]=2;
+//     // size[2]=2;
+//     x= size[0];
+//     y= size[1];
+//     z= size[2];
 
-    Wynik(0, 0) = cos(alfa)*cos(beta);
-    Wynik(0, 1) = (cos(alfa)*sin(beta)*sin(gamma))-(sin(alfa)*cos(gamma))  ;
-    Wynik(0, 2) = (cos(alfa)*sin(beta)*cos(gamma))+(sin(alfa)*sin(gamma));
-    Wynik(0, 3) = x;
+//     Wynik(0, 0) = cos(alfa)*cos(beta);
+//     Wynik(0, 1) = (cos(alfa)*sin(beta)*sin(gamma))-(sin(alfa)*cos(gamma))  ;
+//     Wynik(0, 2) = (cos(alfa)*sin(beta)*cos(gamma))+(sin(alfa)*sin(gamma));
+//     Wynik(0, 3) = x;
 
-    Wynik(1, 0) = sin(alfa)*cos(beta);
-    Wynik(1, 1) = (sin(alfa)*sin(beta)*sin(gamma))+(cos(alfa)*cos(gamma));
-    Wynik(1, 2) = (sin(alfa)*sin(beta)*cos(gamma))+(cos(alfa)*sin(gamma));
-    Wynik(1, 3) = y;
+//     Wynik(1, 0) = sin(alfa)*cos(beta);
+//     Wynik(1, 1) = (sin(alfa)*sin(beta)*sin(gamma))+(cos(alfa)*cos(gamma));
+//     Wynik(1, 2) = (sin(alfa)*sin(beta)*cos(gamma))+(cos(alfa)*sin(gamma));
+//     Wynik(1, 3) = y;
 
-    Wynik(2, 0) = -sin(beta);
-    Wynik(2, 1) = cos(beta)*sin(gamma);
-    Wynik(2, 2) = cos(beta)*cos(gamma);
-    Wynik(2, 3) = z;
+//     Wynik(2, 0) = -sin(beta);
+//     Wynik(2, 1) = cos(beta)*sin(gamma);
+//     Wynik(2, 2) = cos(beta)*cos(gamma);
+//     Wynik(2, 3) = z;
 
-    Wynik(3, 0) = 0;
-    Wynik(3, 1) = 0;
-    Wynik(3, 2) = 0;
-    Wynik(3, 3) = 1;
+//     Wynik(3, 0) = 0;
+//     Wynik(3, 1) = 0;
+//     Wynik(3, 2) = 0;
+//     Wynik(3, 3) = 1;
 
-    return Wynik;
-}
+//     return Wynik;
+// }
+
+
 
 
 /*!       

@@ -44,6 +44,7 @@ set(SOURCES          # All .cpp files in src/
     src/BrylaGeometryczna.cpp
     src/Graniastoslup6.cpp
     src/Dron.cpp
+    src/matrix3x3.cpp
 )
 set(TESTFILES        # All .cpp files in tests/
     tests/main.cpp

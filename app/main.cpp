@@ -11,13 +11,14 @@
 #include <stdlib.h>
 #include <fstream>
 #include <string>
+#include <vector>
 
+#include "matrix3x3.hh"
 #include "exampleConfig.h"
-// #include "example.h"
-#include "vector.hh"
-#include "matrix.hh"
-#include "Prostopadloscian.hh"
-#include "Graniastoslup6.hh"
+// #include "vector.hh"
+// #include "Graniastoslup6.hh"
+// #include "Prostopadloscian.hh"
+
 #include "Dron.hh"
 // #include "Scena.hh"
 #include "../include/lacze_do_gnuplota.hh"
@@ -103,36 +104,66 @@ bool PrzykladZapisuWspolrzednychDoPliku1(const char *sNazwaPliku,
 
 
 
+void PrzykladZapisuWspolrzednychDoStrumienia2(std::ostream &StrmWy, Dron Pr)
+{
+       StrmWy << Pr;
+}
+
+
+bool PrzykladZapisuWspolrzednychDoPliku2(const char *sNazwaPliku,
+                                        Dron Pr /*, Vector<  2> Przesuniecie*/)
+{
+       std::ofstream StrmPlikowy;
+
+       StrmPlikowy.open(sNazwaPliku);
+       if (!StrmPlikowy.is_open())
+       {
+              std::cerr << ":(  Operacja otwarcia do zapisu \"" << sNazwaPliku << "\"" << std::endl
+                        << ":(  nie powiodla sie." << std::endl;
+              return false;
+       }
+
+       PrzykladZapisuWspolrzednychDoStrumienia2(StrmPlikowy, Pr /*, Przesuniecie*/);
+       StrmPlikowy << Pr << endl;
+       // StrmPlikowy << Pr;
+       StrmPlikowy.close();
+       return !StrmPlikowy.fail();
+}
+
+
 int main()
 {
        int nr=0;
-       Matrix<3> m;
-       Vector<3> zero;
-       zero[0] = 0;
-       zero[1] = 0;
-       zero[2] = 0;
        char menu;
-       double kat;
-       // int n;
+       double kat=1;
+       char os;
+       int powierzchnia;
+       // Matrix<3> m;
+       Vector<3> zero;
+       zero[0]=0;
+       zero[1]=0;
+       zero[2]=0;
        Vector<3> wektor_trans;
-       wektor_trans[0] = 50;
-       wektor_trans[1] = 50;
+       // wektor_trans[0]=-50;
+       // wektor_trans[1]=-50;
+       // wektor_trans[2]=-50;
+       Vector<3> skala;
        Vector<3> wektor;
        wektor[0] = 10;
        wektor[1] = 10;
        wektor[2] = 10;
-       char os;
-
+ 
        Prostopadloscian Pr(zero, 50, 50, 30);
-       Graniastoslup Ar(Pr[4], 20/*,10,10*/);
 
-       Dron korpus(nr);
-       Graniastoslup Ar1(Pr[5], 20/*,10,10*/);
-       Graniastoslup Ar2(Pr[6], 20/*,10,10*/);
-       Graniastoslup Ar3(Pr[7], 20/*,10,10*/);
-       // Dron Ar4(i,Pr,Ar,Ar1,Ar2,Ar3);
+       Graniastoslup Ar(Pr[4], 20,20,10);
+       Graniastoslup Ar1(Pr[5], 20,20,10);
+       Graniastoslup Ar2(Pr[6], 20,20,10);
+       Graniastoslup Ar3(Pr[7], 20,20,10);
+
+       Dron Predator(nr);
 
        
+       // Ar = macierzobrotZ(kat) * Ar;
 
        // double h=2, w=3; //wysokosc i długosc Prostopadlosciana
        std::cout << "Project Rotation 2D based on C++ Boiler Plate v"
@@ -154,6 +185,7 @@ int main()
        //  na dwa sposoby:
        //   1. Rysowane jako linia ciagl o grubosci 2 piksele
        //
+       Lacze.DodajNazwePliku("../datasets/korpus.dat", PzG::RR_Ciagly, 2);
        Lacze.DodajNazwePliku("../datasets/Prostopadloscian.dat", PzG::RR_Ciagly, 2);
        Lacze.DodajNazwePliku("../datasets/Rotor0.dat", PzG::RR_Ciagly, 2);
        Lacze.DodajNazwePliku("../datasets/Rotor1.dat", PzG::RR_Ciagly, 2);
@@ -172,6 +204,16 @@ int main()
        Lacze.UstawZakresX(-155, 155);
        Lacze.UstawZakresZ(-155, 155);
 
+
+
+
+       // Lacze.DodajNazwePliku("../datasets/korp2.dat");
+
+       std::cout<<"Kasia"<<std::endl;
+       
+       PrzykladZapisuWspolrzednychDoStrumienia2(std::cout, Predator /*, zero*/);
+       if (!PrzykladZapisuWspolrzednychDoPliku2("../datasets/korpus.dat", Predator))
+              return 1;
        PrzykladZapisuWspolrzednychDoStrumienia1(std::cout, Pr /*, zero*/);
        if (!PrzykladZapisuWspolrzednychDoPliku1("../datasets/Prostopadloscian.dat", Pr ))
               return 1;
@@ -193,20 +235,7 @@ int main()
               return 1;
 
        Lacze.Rysuj();
-       // PrzykladZapisuWspolrzednychDoStrumienia(std::cout, Ar1);
-
-       // if (!PrzykladZapisuWspolrzednychDoPliku("../datasets/Rotor1.dat", Ar1))
-       //        return 1;
-       // Lacze.Rysuj();
-       // PrzykladZapisuWspolrzednychDoStrumienia(std::cout, Ar2);
-
-       // if (!PrzykladZapisuWspolrzednychDoPliku("../datasets/Rotor2.dat", Ar2))
-       //        return 1;
-       // Lacze.Rysuj();
-       // PrzykladZapisuWspolrzednychDoStrumienia(std::cout, Ar3);
-
-       // if (!PrzykladZapisuWspolrzednychDoPliku("../datasets/Rotor3.dat", Ar3))
-       //        return 1;
+       
        // Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
        std::cout << "Naciśnij ENTER, aby kontynuowac" << std::endl;
        std::cin.ignore(100000, '\n');
@@ -214,12 +243,56 @@ int main()
        //----------------------------------------------------------
        // Ponownie wypisuje wspolrzedne i rysuje prostokąt w innym miejscu.
        //
-       // PrzykladZapisuWspolrzednychDoStrumienia(std::cout, Ar /*, wektor_trans*/);
-       // if (!PrzykladZapisuWspolrzednychDoPliku("../datasets/Prostopadloscian.dat", Ar /*, wektor_trans*/))
-       //        return 1;
-       // Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
-       // std::cout << "Naciśnij ENTER, aby kontynuowac" << std::endl;
-       // std::cin.ignore(100000, '\n');
+ 
+       std::cout << "Zosia" << std::endl;
+       // std::cout << "Justyna" << std::endl;
+       // Pr.set_katOZ(kat);
+       // Pr.move(wektor_trans);
+       // Ar.set_katOZ(kat);
+       // Ar.move(wektor_trans);
+       // Ar1.set_katOZ(kat);
+       // Ar1.move(wektor_trans);
+       // Ar2.set_katOZ(kat);
+       // Ar2.move(wektor_trans);
+       // Ar3.set_katOZ(kat);
+       // Ar3.move(wektor_trans);
+
+
+       // Pr.obrotP(kat);
+       // for(int licznik; licznik < 1000000 ; licznik ++)
+       {
+       Ar.obrotW1(kat);
+       Ar1.obrotW(kat);
+       Ar2.obrotW1(kat);
+       Ar3.obrotW(kat);
+       std::cout << "Marysia" << std::endl;
+       
+
+       PrzykladZapisuWspolrzednychDoStrumienia1(std::cout, Pr /*, zero*/);
+       if (!PrzykladZapisuWspolrzednychDoPliku1("../datasets/Prostopadloscian.dat", Pr ))
+              return 1;
+
+       PrzykladZapisuWspolrzednychDoStrumienia(std::cout, Ar /*, zero*/);
+       if (!PrzykladZapisuWspolrzednychDoPliku("../datasets/Rotor0.dat", Ar ))
+              return 1;
+
+       PrzykladZapisuWspolrzednychDoStrumienia(std::cout, Ar1 /*, zero*/);
+       if (!PrzykladZapisuWspolrzednychDoPliku("../datasets/Rotor1.dat", Ar1 ))
+              return 1;
+
+       PrzykladZapisuWspolrzednychDoStrumienia(std::cout, Ar2 /*, zero*/);
+       if (!PrzykladZapisuWspolrzednychDoPliku("../datasets/Rotor2.dat", Ar2 ))
+              return 1;
+
+       PrzykladZapisuWspolrzednychDoStrumienia(std::cout, Ar3 /*, zero*/);
+       if (!PrzykladZapisuWspolrzednychDoPliku("../datasets/Rotor3.dat", Ar3 ))
+              return 1;
+
+
+       Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
+       }
+       std::cout << "Naciśnij ENTER, aby kontynuowac" << std::endl;
+       std::cin.ignore(100000, '\n');
 
        // Z bazy projektu-wydmuszki Boiler Plate C++:
        // Bring in the dummy class from the example source,
@@ -229,67 +302,79 @@ int main()
        {
 
               std::cout << "Wybierz jedna z dostepnych opcji: " << std::endl;
-              std::cout << "o - obrot Prostopadlosciana o zadany kat" << std::endl;
-              std::cout << "r - wyswietlenie macierzy rotacji" << std::endl;
-              std::cout << "p - przesuniecie Prostopadlosciana o zadany wektor" << std::endl;
-              std::cout << "w - wyswietlenie wspolrzednych wierzcholkow" << std::endl;
-              std::cout << "s - sprawdzenie dlugosci przeciwleglych bokow " << std::endl;
+              std::cout << "a - wybierz aktywnego drona" << std::endl;
+              std::cout << "p - zadaj parametry przelotu" << std::endl;
+              std::cout << "d - dodaj element powierzchni" << std::endl;
+              std::cout << "u - usun element powierzchni" << std::endl;
               std::cout << "m - wyswietl menu" << std::endl;
               std::cout << "k - koniec dzialania programu" << std::endl;
               std::cin >> menu;
 
               switch (menu)
               {
-              case 'o':
+              case 'a':
               {
-                     // char os;
-                     // while(1)
-                     // {
-                     // std::cout << "os?" << std::endl;
-                     // std::cin >> os;
+                     std::cout << "1 - Polozenie (x,y):  " ;
 
-                     // if(os=='k')
-                     // {
-                     // break;
-                     // }
-                     std::cout << "Podaj wartość kąta obrotu w stopniach" << std::endl;
-                     std::cin >> kat;
+                     std::cout << "2 - Polozenie (x,y):  " ;
+                     
+                     
 
-                     std::cout << "Podaj os obrotu wzgledem, ktorej chcesz dokonac rotacji" << std::endl;
-                     std::cout << "OX - wprowadz x , OY - wprowadz y , OZ - wprowadz z, wzgledem wszytskich podaj q  " << std::endl;
-                     std::cin >> os;
+              }
+              break;
+              case 'p':
+              {
+                     
 
-                     // if (os == 'z')
-                     // {
-                     //        Ar = macierzobrotZ(kat) * Ar;
-                     // }
-                     // if (os == 'x')
-                     // {
-                     //        Ar = macierzobrotX(kat) * Ar;
-                     // }
-                     // if (os == 'y')
-                     // {
-                     //        m = m * macierzobrotZ(kat);
-                     // }
-                     // if (os == 'q')
-                     // {
-                     //        Ar = macierzobrotZ(kat) * Ar;
-                     //        Ar = macierzobrotY(kat) * Ar;
-                     //        Ar = macierzobrotX(kat) * Ar;
-                     // }
+              }
+              break;
+              case 'd':
+              {
+                     std::cout << "Wybierz rodzaj powierzchniowego elementu " << std::endl;
+                     std::cout << "1 - Gora z ostrym sztytem" << std::endl;
+                     std::cout << "2 - Gora z grania" << std::endl;
+                     std::cout << "3 - Plaskowyz" << std::endl;
+                     std::cin >> powierzchnia;
 
-                     // }
+                     if (powierzchnia == 1)
+                     {
+                            std::cout << "Podaj scale wzdluz kolejnych osi OX, OY, OZ." << std::endl;
+                            std::cin >> skala;
 
-                     // Ar = m * Ar;
-                     // Ar = macierzobrotY(kat) * Ar;
-                     // Ar = macierzobrotX(kat) * Ar;
+                     } 
+                     
+                     if (powierzchnia == 2)
+                     {
+                            std::cout << "Podaj scale wzdluz kolejnych osi OX, OY, OZ." << std::endl;
+                            std::cin >> skala;
 
-                     std::cout << Ar;
-                     if (!PrzykladZapisuWspolrzednychDoPliku("../datasets/Prostopadloscian.dat", Ar /*, wektor_trans*/))
-                            return 1;
-                     Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
-                     std::cout << "Naciśnij ENTER, aby kontynuowac" << std::endl;
-                     std::cin.ignore(100000, '\n');
+                     }
+                     
+                     if (powierzchnia == 3)
+                     {
+                            std::cout << "Podaj scale wzdluz kolejnych osi OX, OY, OZ." << std::endl;
+                            std::cin >> skala;
+                     }
+                     
+
+              }
+              break;
+              case 'u':
+              {
+                     
+
+              }
+              break;
+              
+              case 'm':
+              {
+              //        int a = 10, b = 20, c = 30;
+              //        std::cout << cztery(a, b, c, wektor);
+              }
+              break;
+              case 'k':
+              {
+                     std::cout << "Koniec dzialania programu." << std::endl;
               }
               break;
               case 'r':
@@ -298,46 +383,34 @@ int main()
                      std::cout << "OX - wprowadz x , OY - wprowadz y , OZ - wprowadz z  " << std::endl;
                      std::cin >> os;
 
-                     if (os == 'x')
-                            std::cout << macierzobrotX(kat) << std::endl;
-                     if (os == 'y')
-                            std::cout << macierzobrotY(kat) << std::endl;
-                     if (os == 'z')
-                            std::cout << macierzobrotZ(kat) << std::endl;
+                     // if (os == 'x')
+                     //        std::cout << macierzobrotX(kat) << std::endl;
+                     // if (os == 'y')
+                     //        std::cout << macierzobrotY(kat) << std::endl;
+                     // if (os == 'z')
+                     //        std::cout << macierzobrotZ(kat) << std::endl;
               }
               break;
-              case 'p':
+              case 'q':
               {
-                     std::cout << "Podaj wektor translacji" << std::endl;
-                     std::cin >> wektor_trans;
-                     // Ar.move(wektor_trans);
-                     if (!PrzykladZapisuWspolrzednychDoPliku("../datasets/Prostopadloscian.dat", Ar /*, wektor_trans*/))
-                            return 1;
-                     Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
-                     std::cout << "Naciśnij ENTER, aby kontynuowac" << std::endl;
-                     std::cin.ignore(100000, '\n');
+                     // std::cout << "Podaj wektor translacji" << std::endl;
+                     // std::cin >> wektor_trans;
+                     // // Ar.move(wektor_trans);
+                     // if (!PrzykladZapisuWspolrzednychDoPliku("../datasets/Prostopadloscian.dat", Ar /*, wektor_trans*/))
+                     //        return 1;
+                     // Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
+                     // std::cout << "Naciśnij ENTER, aby kontynuowac" << std::endl;
+                     // std::cin.ignore(100000, '\n');
               }
               break;
               case 'w':
               {
-                     std::cout << Ar;
-                     if (!PrzykladZapisuWspolrzednychDoPliku("../datasets/Prostopadloscian.dat", Ar /*, wektor_trans*/))
-                            return 1;
-                     Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
-                     std::cout << "Naciśnij ENTER, aby kontynuowac" << std::endl;
-                     std::cin.ignore(100000, '\n');
-              }
-              break;
-
-              case 'm':
-              {
-                     int a = 10, b = 20, c = 30;
-                     std::cout << cztery(a, b, c, wektor);
-              }
-              break;
-              case 'k':
-              {
-                     std::cout << "Koniec dzialania programu." << std::endl;
+                     // std::cout << Ar;
+                     // if (!PrzykladZapisuWspolrzednychDoPliku("../datasets/Prostopadloscian.dat", Ar /*, wektor_trans*/))
+                     //        return 1;
+                     // Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
+                     // std::cout << "Naciśnij ENTER, aby kontynuowac" << std::endl;
+                     // std::cin.ignore(100000, '\n');
               }
               break;
               default:

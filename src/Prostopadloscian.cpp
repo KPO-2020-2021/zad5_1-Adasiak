@@ -2,6 +2,7 @@
 #include "../include/lacze_do_gnuplota.hh"
 #include <iomanip>
 
+
 /*!
     \brief
     *Konstruktor Prostopadlosciana. 
@@ -39,23 +40,6 @@ Prostopadloscian::Prostopadloscian(Vector<3> pkt, double h, double w, double d)
     pkt1[7][2] += d;
 }
 
-// Vector<3> Prostopadloscian::translacja(Vector<3> &trans)
-// {
-//     // Prostopadloscian przesuniete;
-//     // Vector<  2> a2, b2, c2, d2;
-
-//     // a2=pkt1[0];
-//     // b2=pkt1[1];
-//     // c2=pkt1[2];
-//     // d2=pkt1[3];
-
-//     // przesuniete.pkt1[0] = a2 + trans;
-//     // przesuniete.pkt1[1] = b2 + trans;
-//     // przesuniete.pkt1[2] = c2 + trans;
-
-//     // return przesuniete;
-// }
-
 /*!
     \brief
     *Funkcja rotacji Prostopadlosciana
@@ -64,6 +48,7 @@ Prostopadloscian::Prostopadloscian(Vector<3> pkt, double h, double w, double d)
     * 
 
 */
+
 
 std::ostream &operator<<(std::ostream &Strm,
                          const Prostopadloscian &Pr)
@@ -79,44 +64,26 @@ std::ostream &operator<<(std::ostream &Strm,
     return Strm;
 }
 
-// /*
-// \brief
-//     *funkcja PrzykladZapisuWspolrzednychDoStrumienia
-//     *sluzy do zapoisu kolejnych wierzcholkow Prostopadlosciana
-//     * pomocna przy rysowaniu przez gnuplota naszego Prostopadlosciana w oknie graficznym
-//     * zaczynamy od 1 wierzcholka i kolejno dla kazdego nasteonego wierzcholka wykonujemy taka sama operacje
-//     * a nastepnie znowu uzywamy 1 wierzcholka aby program narysowal linie z ostatniego wierzcholka do 1
 
-// */
 
-// void PrzykladZapisuWspolrzednychDoStrumienia( std::ostream&     StrmWy, Prostopadloscian Pr,   Vector<  2>  Przesuniecie)
+// Matrix<3> Prostopadloscian::operator *  (Matrix<3> tmp)
 // {
-//     Pr[0]=Pr[0]+Przesuniecie;
-//     Pr[1]=Pr[1]+Przesuniecie;
-//     Pr[2]=Pr[2]+Przesuniecie;
-//     Pr[3]=Pr[3]+Przesuniecie;
-
-//     StrmWy << std::setw(16) << std::fixed << std::setprecision(10) << Pr[0] << std::endl;
-//     StrmWy << std::setw(16) << std::fixed << std::setprecision(10) << Pr[1] << std::endl;
-//     StrmWy << std::setw(16) << std::fixed << std::setprecision(10) << Pr[2] << std::endl;
-//     StrmWy << std::setw(16) << std::fixed << std::setprecision(10) << Pr[3] << std::endl;
-//     StrmWy << std::setw(16) << std::fixed << std::setprecision(10) << Pr[0] << std::endl;
+//     Prostopadloscian wynik;
+//     for(int i=0; i < 8 ; ++i)
+//     {
+//         wynik[i] = *this[i] * tmp;  
+//     }
 // }
 
-//  bool Prostopadloscian::ZapisWspolrzednychDoPliku(const char *sNazwaPliku, Prostopadloscian Pr , Vector<  2> Przesuniecie)
-//  {
 
-//   std::ofstream  StrmPlikowy;
+// Prostopadloscian Prostopadloscian::operator*(Matrix<3> tmp)
+//     {
+//         Prostopadloscian wynik;
+//         for (int i = 0; i < 8; i++)
+//         {
 
-//   StrmPlikowy.open(sNazwaPliku);
-//   if (!StrmPlikowy.is_open())  {
-//     std::cerr << ":(  Operacja otwarcia do zapisu \"" << sNazwaPliku << "\"" << std::endl
-// 	 << ":(  nie powiodla sie." << std::endl;
-//     return false;
-//   }
+//             wynik[i] = tmp * (*this)[i];
+//         }
+//         return wynik;
+//     }
 
-//   PrzykladZapisuWspolrzednychDoStrumienia(StrmPlikowy , Pr , Przesuniecie );
-
-//   StrmPlikowy.close();
-//   return !StrmPlikowy.fail();
-//  }

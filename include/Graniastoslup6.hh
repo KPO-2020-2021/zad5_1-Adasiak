@@ -17,10 +17,10 @@ class Graniastoslup : public BrylaGeometryczna
 public:
     Graniastoslup(){};
     
-    Graniastoslup(Vector<3> srodek,double promien/*, string nazwa_pliku, string nazwa_pliku_do_zapisu*/);
+    // Graniastoslup(Vector<3> srodek,double promien/*, string nazwa_pliku, string nazwa_pliku_do_zapisu*/);
 
 
-    // Graniastoslup(Vector<3> pkt, double h, double w, double d);
+    Graniastoslup(Vector<3> pkt, double h, double w, double d);
 
  
     // bool ZapisWspolrzednychDoPliku(const char *sNazwaPliku, Graniastoslup Pr, Vector<  3> Przesuniecie);
