@@ -14,9 +14,9 @@
 */
 
 
-// Graniastoslup::Graniastoslup(Vector<3> srodek,double promien/*,string nazwa_pliku, string nazwa_pliku_do_zapisu*/){
-//     // this->nazwa_pliku = nazwa_pliku;
-//     // this->nazwa_pliku_do_zapisu = nazwa_pliku_do_zapisu;
+// Graniastoslup::Graniastoslup(Vector<3> srodek,double promien,string nazwa_pliku, string nazwa_pliku_do_zapisu){
+//     this->nazwa_pliku = nazwa_pliku;
+//     this->nazwa_pliku_do_zapisu = nazwa_pliku_do_zapisu;
 //     // double katOX = 0;
 //     // double katOY = 0;
 //     // double katOZ = 0;
@@ -25,18 +25,18 @@
 //         tmp[2]=srodek[2];
 //         tmp[0]=srodek[0]+promien*sin(i*M_PI/180);
 //         tmp[1]=srodek[1]+promien*cos(i*M_PI/180);
-//         // srodek[0];
+//         srodek[0];
 //         pkt1.push_back(tmp);
 //         pkt1.push_back(tmp);
 //         tmp[2]=srodek[2]+10;
 //         tmp[0]=srodek[0]+promien*sin(i*M_PI/180);
 //         tmp[1]=srodek[1]+promien*cos(i*M_PI/180);
-//         // srodek[0];
+//         srodek[0];
 //         pkt1.push_back(tmp);
 //     }
 
-//     // srodek[0];
-//     // srodek[1];
+//     srodek[0];
+//     srodek[1];
 //     pkt1.push_back(pkt1[0]);
 //     pkt1.push_back(pkt1[1]);
 //     ofstream plik;
@@ -53,8 +53,11 @@
 
 
 
-Graniastoslup::Graniastoslup(Vector<3> pkt, double h, double w, double d)
+Graniastoslup::Graniastoslup(Vector<3> pkt, double h, double w, double d,string nazwa_pliku, string nazwa_pliku_do_zapisu)
 {
+    this->nazwa_pliku = nazwa_pliku;
+    this->nazwa_pliku_do_zapisu = nazwa_pliku_do_zapisu;
+
     pkt1.resize(25);
     for (int i = 0; i < 25; i++)
     {
@@ -140,6 +143,17 @@ Graniastoslup::Graniastoslup(Vector<3> pkt, double h, double w, double d)
 
     pkt1[24][0] -= w;
     pkt1[24][2] += d;
+
+ ofstream plik;
+        plik.open(nazwa_pliku);
+    for(int i=0; i<(int)pkt1.size(); i++)
+    {
+        if(i%2==0)
+        plik<<endl;
+        plik<<pkt1[i]<<endl;
+    }
+    plik.close();
+    zapis();   
 
 }
 

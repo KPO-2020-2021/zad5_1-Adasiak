@@ -27,10 +27,11 @@ public:
 
     void move(const Vector<3> &v);
 
-    void obrotP(double kat);
+    void obrotOZ(double kat);
+    void obrotP(double kat, Vector<3> a);
     
     void obrotW(double kat);
-    void obrotW1(double kat);
+    void obrotW1(double kat,Vector<3> b);
 
 
     void zapis();

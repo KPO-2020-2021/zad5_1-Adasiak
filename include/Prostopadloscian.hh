@@ -17,7 +17,11 @@ class Prostopadloscian : public BrylaGeometryczna
 public:
     Prostopadloscian(){};
 
-    Prostopadloscian(Vector<3> pkt, double h, double w, double d);
+    Prostopadloscian(Vector<3> pkt, double h, double w, double d, string nazwa_pliku, string nazwa_pliku_do_zapisu);
+    
+    // Prostopadloscian(double dlugosc, double szerokosc, double wysokosc, string nazwa_pliku, string nazwa_pliku_do_zapisu);
+
+    
 
 };
 
