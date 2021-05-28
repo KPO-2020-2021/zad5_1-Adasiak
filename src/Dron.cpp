@@ -7,7 +7,7 @@
 Dron::Dron(int id)
 {
     Dron::id++;
-    id=id;
+    // id=id;
     // Prostopadloscian pkt1 ;
     // Graniastoslup pkt2;
     // pkt1[5]=pkt2[0];
@@ -22,13 +22,47 @@ Dron::Dron(int id)
     // wirniki[2] = new Graniastoslup((*korpus)[6], 12,12,10 ,"../datasets/s2.dat","../datasets/s2_2.dat");
     // wirniki[3] = new Graniastoslup((*korpus)[7], 12,12,10 ,"../datasets/s2.dat","../datasets/s2_2.dat");
 
-
+  if(id==1){
     korpus = new Prostopadloscian( droga,30, 30, 20 ,"../datasets/korp.dat","../datasets/korp2.dat");
     wirniki[0] = new Graniastoslup((*korpus)[4], 12,12,10,"../datasets/wirnik1.dat","../datasets/wirnik1_2.dat");
     wirniki[1] = new Graniastoslup((*korpus)[5], 12,12,10 ,"../datasets/wirnik2.dat","../datasets/wirnik2_2.dat");
     wirniki[2] = new Graniastoslup((*korpus)[6], 12,12,10 ,"../datasets/wirnik3.dat","../datasets/wirnik3_2.dat");
     wirniki[3] = new Graniastoslup((*korpus)[7], 12,12,10 ,"../datasets/wirnik4.dat","../datasets/wirnik4_2.dat");
+  }
+  if(id==2){
+    double a=-100,b=-100;
+    dwojka[0]=a;
+    dwojka[1]=b;
+
+    korpus1 = new Prostopadloscian( dwojka,30, 30, 20 ,"../datasets/korp3.dat","../datasets/korp4.dat");
+    wirniki1[0] = new Graniastoslup((*korpus1)[4], 12,12,10,"../datasets/wirnik1_3.dat","../datasets/wirnik1_4.dat");
+    wirniki1[1] = new Graniastoslup((*korpus1)[5], 12,12,10 ,"../datasets/wirnik2_3.dat","../datasets/wirnik2_4.dat");
+    wirniki1[2] = new Graniastoslup((*korpus1)[6], 12,12,10 ,"../datasets/wirnik3_3.dat","../datasets/wirnik3_4.dat");
+    wirniki1[3] = new Graniastoslup((*korpus1)[7], 12,12,10 ,"../datasets/wirnik4_3.dat","../datasets/wirnik4_4.dat");
+
+  }
+
+
 }
+
+
+// void Dron::Dron2()
+// {
+//     double a=-100,b=-100;
+//     dwojka[0]=a;
+//     dwojka[1]=b;
+
+//     korpus = new Prostopadloscian( dwojka,30, 30, 20 ,"../datasets/korp3.dat","../datasets/korp4.dat");
+//     wirniki[0] = new Graniastoslup((*korpus)[4], 12,12,10,"../datasets/wirnik1_3.dat","../datasets/wirnik1_4.dat");
+//     wirniki[1] = new Graniastoslup((*korpus)[5], 12,12,10 ,"../datasets/wirnik2_3.dat","../datasets/wirnik2_4.dat");
+//     wirniki[2] = new Graniastoslup((*korpus)[6], 12,12,10 ,"../datasets/wirnik3_3.dat","../datasets/wirnik3_4.dat");
+//     wirniki[3] = new Graniastoslup((*korpus)[7], 12,12,10 ,"../datasets/wirnik4_3.dat","../datasets/wirnik4_4.dat");
+
+
+
+// }
+
+
 
 void Dron::ruch(Vector<3> droga, double katOZ, double katOY /*, double OX*/)
 {
@@ -69,6 +103,8 @@ void Dron::ruch(Vector<3> droga, double katOZ, double katOY /*, double OX*/)
     korpus->zapis();
     
     Dron::droga = droga + Dron::droga;
+
+    // Dron::dwojka = droga + Dron::dwojka;
 
 }
 

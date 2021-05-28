@@ -8,15 +8,20 @@ class Dron
 {
 int id;
 Vector<3> droga;
+Vector<3> dwojka;
+
 // Matrix<3> mac;
 Prostopadloscian  *korpus;
 Graniastoslup *wirniki[4];
+Prostopadloscian  *korpus1;
+Graniastoslup *wirniki1[4];
 // string PLIK_TRASY_PRZELOTU;
 public:
 
 // Vector<3> droga;
 // Dron(int id=0);
 Dron(int id);
+void Dron2();
 void ruch(Vector<3> droga, double katOZ, double katOY /*, double OX*/);
 void obrot(double kat);
 

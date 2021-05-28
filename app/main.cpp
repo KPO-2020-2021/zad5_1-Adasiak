@@ -187,7 +187,7 @@ bool PrzykladZapisuWspolrzednychDoPliku1(const char *sNazwaPliku,
 
 int main()
 {
-       int nr=0;
+       int nr=1;
        char menu;
        // double kat=1;
        char os;
@@ -215,8 +215,12 @@ int main()
        // Graniastoslup Ar3(Pr[7], 20,20,10);
 
        Dron Predator(nr);
+       int Mariusz = 2;
+       Dron Pudzianowski(Mariusz);
 
-       
+       // Trynkiewicz.Dron2();
+
+       Pudzianowski.ruch(wektor_trans,0,0);
        // Ar = macierzobrotZ(kat) * Ar;
        double a=-90,b=90,c,d;
        c=atan2(b,a);
@@ -278,12 +282,19 @@ int main()
        // if (!PrzykladZapisuWspolrzednychDoPliku2("../datasets/korpus.dat", Predator))
        //        return 1;
        Lacze.DodajNazwePliku("../datasets/dno2.dat" );
+       // Lacze.DodajNazwePliku("../datasets/trasa_przelotu.dat" );
 
        Lacze.DodajNazwePliku("../datasets/korp2.dat");
        Lacze.DodajNazwePliku("../datasets/wirnik1_2.dat");
        Lacze.DodajNazwePliku("../datasets/wirnik2_2.dat");
        Lacze.DodajNazwePliku("../datasets/wirnik3_2.dat");
        Lacze.DodajNazwePliku("../datasets/wirnik4_2.dat");
+
+       Lacze.DodajNazwePliku("../datasets/korp4.dat");
+       Lacze.DodajNazwePliku("../datasets/wirnik1_4.dat");
+       Lacze.DodajNazwePliku("../datasets/wirnik2_4.dat");
+       Lacze.DodajNazwePliku("../datasets/wirnik3_4.dat");
+       Lacze.DodajNazwePliku("../datasets/wirnik4_4.dat");
 
        // PrzykladZapisuWspolrzednychDoStrumienia1(std::cout, Pr /*, zero*/);
        // if (!PrzykladZapisuWspolrzednychDoPliku1("../datasets/Prostopadloscian.dat", Pr ))
