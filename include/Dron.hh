@@ -6,8 +6,14 @@
 
 class Dron
 {
-int id;
+int licznik_dronow;
+int nr1=1;
+int nr2=2;
+int iddrona;
+
 Vector<3> droga;
+
+double tab[3];
 Vector<3> dwojka;
 
 // Matrix<3> mac;
@@ -21,7 +27,6 @@ public:
 // Vector<3> droga;
 // Dron(int id=0);
 Dron(int id);
-void Dron2();
 void ruch(Vector<3> droga, double katOZ, double katOY /*, double OX*/);
 void obrot(double kat);
 
@@ -35,6 +40,7 @@ void zwiad2(PzG::LaczeDoGNUPlota &Lacze,double promien);//2 wersja
 
 void zapisz();
 
+void wspolrzedne();
 
 
 };
