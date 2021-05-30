@@ -18,7 +18,6 @@ public:
     
     // Prostopadloscian(double dlugosc, double szerokosc, double wysokosc, string nazwa_pliku, string nazwa_pliku_do_zapisu);
 
-    
 
 };
 

@@ -6,6 +6,15 @@
 
 
 
+/*!       
+    \brief
+    konstruktor drona
+    za jego pomoca mozliwe jest stworzenie 2 roznych dronow 
+    tworzenie 1 drona zacznie sie od punktu (0,0,0)
+    a 2 od punktu (-100,-100,0)
+    do tworzenia konstruncji drona uzyjemy Prostopadlosciana oraz Graniastoslupa6
+
+*/
 Dron::Dron(int id)
 {
     Dron::licznik_dronow++;
@@ -36,6 +45,10 @@ Dron::Dron(int id)
 
 }
 
+/*!       
+    \brief
+    Funckaj sluzaca do wyswietlania wspolrzednych punktu od ktorego zacynalismy tworzenie drona
+*/
 
 void Dron::wspolrzedne()
 {
@@ -52,7 +65,17 @@ void Dron::wspolrzedne()
   }
 }
 
+/*!       
+    \brief
+    Ruch
+    funkcja odpowiadajaca za poruszanie sie drona 
+    przemieszcza ona wszytskie jego skladowe (korpus oraz wszytskie wirniki)
+    w wersji podstawowej oferuje ona jedynie poruszanie sie drona jednakzde jezeli ustawimy odpowiednie katy bedzie ona jednoczenie wykonywala jego obrot
 
+    przy jednoczesnym obrocie rotorow wolol wlasnej osi
+
+
+*/
 
 void Dron::ruch(Vector<3> droga, double katOZ, double katOY )
 {
@@ -125,54 +148,114 @@ void Dron::ruch(Vector<3> droga, double katOZ, double katOY )
 
 }
 
+
+
+/*!       
+    \brief
+    Funkcja obrotu drona wokol jego srodka 
+    obraca ona rotory wzgledem srodka drona oraz korpus przez co caly dron kreci sie wokol wlasnej osi o zadany kat
+
+    przy jednoczesnym obrocie rotorow wolol wlasnej osi
+*/
 void Dron::obrot(double kat)
 {
     Vector<3> tmp;
   if(iddrona==1)
   {
-    wirniki[0]->obrotW(90);
-    wirniki[0]->obrotW1(kat,droga);
-    
-    wirniki[1]->obrotW(90);
-    wirniki[1]->obrotW1(kat,droga);
-    
-    wirniki[2]->obrotW(90);
-    wirniki[2]->obrotW1(kat,droga);
-    
-    wirniki[3]->obrotW(90);
-    wirniki[3]->obrotW1(kat,droga);
+    if(kat>0){
+        wirniki[0]->obrotW(10);
+        wirniki[0]->obrotW1(kat,droga);
+        
+        wirniki[1]->obrotW(10);
+        wirniki[1]->obrotW1(kat,droga);
+        
+        wirniki[2]->obrotW(90);
+        wirniki[2]->obrotW1(kat,droga);
+        
+        wirniki[3]->obrotW(90);
+        wirniki[3]->obrotW1(kat,droga);
 
-    korpus->obrotP(kat, droga);
+        korpus->obrotP(kat, droga);
 
-    wirniki[0]->zapis();
-    wirniki[1]->zapis();
-    wirniki[2]->zapis();
-    wirniki[3]->zapis();
+        wirniki[0]->zapis();
+        wirniki[1]->zapis();
+        wirniki[2]->zapis();
+        wirniki[3]->zapis();
 
-    korpus->zapis();
+        korpus->zapis();
+    }
+    if(kat<0)
+    {
+        wirniki[0]->obrotW(90);
+        wirniki[0]->obrotW1(kat,droga);
+        
+        wirniki[1]->obrotW(90);
+        wirniki[1]->obrotW1(kat,droga);
+        
+        wirniki[2]->obrotW(10);
+        wirniki[2]->obrotW1(kat,droga);
+        
+        wirniki[3]->obrotW(10);
+        wirniki[3]->obrotW1(kat,droga);
+
+        korpus->obrotP(kat, droga);
+
+        wirniki[0]->zapis();
+        wirniki[1]->zapis();
+        wirniki[2]->zapis();
+        wirniki[3]->zapis();
+
+        korpus->zapis();
+
+    }
   }
   if(iddrona==2)
   {
-    wirniki1[0]->obrotW(90);
-    wirniki1[0]->obrotW1(kat,dwojka);
-    
-    wirniki1[1]->obrotW(90);
-    wirniki1[1]->obrotW1(kat,dwojka);
-    
-    wirniki1[2]->obrotW(90);
-    wirniki1[2]->obrotW1(kat,dwojka);
-    
-    wirniki1[3]->obrotW(90);
-    wirniki1[3]->obrotW1(kat,dwojka);
+    if(kat>0){
+        wirniki1[0]->obrotW(10);
+        wirniki1[0]->obrotW1(kat,dwojka);
+        
+        wirniki1[1]->obrotW(10);
+        wirniki1[1]->obrotW1(kat,dwojka);
+        
+        wirniki1[2]->obrotW(90);
+        wirniki1[2]->obrotW1(kat,dwojka);
+        
+        wirniki1[3]->obrotW(90);
+        wirniki1[3]->obrotW1(kat,dwojka);
 
-    korpus1->obrotP(kat, dwojka);
+        korpus1->obrotP(kat, dwojka);
 
-    wirniki1[0]->zapis();
-    wirniki1[1]->zapis();
-    wirniki1[2]->zapis();
-    wirniki1[3]->zapis();
+        wirniki1[0]->zapis();
+        wirniki1[1]->zapis();
+        wirniki1[2]->zapis();
+        wirniki1[3]->zapis();
 
-    korpus1->zapis();
+        korpus1->zapis();
+    }
+    if(kat<0){
+        wirniki1[0]->obrotW(90);
+        wirniki1[0]->obrotW1(kat,dwojka);
+        
+        wirniki1[1]->obrotW(90);
+        wirniki1[1]->obrotW1(kat,dwojka);
+        
+        wirniki1[2]->obrotW(10);
+        wirniki1[2]->obrotW1(kat,dwojka);
+        
+        wirniki1[3]->obrotW(10);
+        wirniki1[3]->obrotW1(kat,dwojka);
+
+        korpus1->obrotP(kat, dwojka);
+
+        wirniki1[0]->zapis();
+        wirniki1[1]->zapis();
+        wirniki1[2]->zapis();
+        wirniki1[3]->zapis();
+
+        korpus1->zapis();
+    }
+    
   } 
 }
 
@@ -252,6 +335,14 @@ bool Dron::DodajTrasePrzelotu(PzG::LaczeDoGNUPlota &Lacze ,double x2, double y2)
 }
 
 
+
+
+/*!       
+    \brief
+    Animacja lotu drona Ftunkcja odpowiada za powolne wyswietlanie ruchu drona przez co mozemy sledzic na ekranie jego ruch 
+    funckja bazuje na operacjach ruchu drona oraz obrotu
+
+*/
 void Dron::AnimacjaLotuDrona(PzG::LaczeDoGNUPlota &Lacze, double x1,double y1)
 {
   
@@ -357,7 +448,17 @@ void Dron::AnimacjaLotuDrona(PzG::LaczeDoGNUPlota &Lacze, double x1,double y1)
 //   return true;
 }
 
+/*!       
+    \brief
+    Zwiadu drona Funkcja odpowiada za powolne wyswietlanie ruchu drona przez co mozemy sledzic na ekranie jego ruch 
+    funckja bazuje na operacjach ruchu drona oraz obrotu
 
+    przy podaniu promienia lotu dron wzbija sie w powietrze a nastepnie wykonuje lot o zadany promien. 
+    kolejno obraca sie wokol wlasnej osi o 90 stopni i zaczyna lot po obwodzie kola.
+    Po powrocie drona do miejsca skad zaczynal przelot po okregu nastpeuje kolejny obrot o 90 stopni wolku jego wlasnej osi a nastepnie powrot do punktu skad zaczynal przelot.
+    
+
+*/
 void Dron::zwiad2(PzG::LaczeDoGNUPlota &Lacze,double promien)
 {
   

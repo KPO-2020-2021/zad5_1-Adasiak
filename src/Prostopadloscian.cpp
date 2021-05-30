@@ -8,6 +8,8 @@
     *Konstruktor Prostopadlosciana. 
     *Tworzymy Prostopadlosciana wzgledem 1 wierzcholak (jego wspolrzednych ), 
     * a nastepnie kolejne wierzcholki dodajac do 1 wierzcholka szerokosc i wysokosc w zaleznosci od kolejnego wierzcholka
+    * 
+    * a nastepnie zapisujemy je kolejno  do odpowiedniego pliku 
     *
     *  
 
@@ -112,15 +114,17 @@ Prostopadloscian::Prostopadloscian(Vector<3> pkt, double h, double w, double d, 
 //     zapis();
 // }
 
+
+
+
 /*!
     \brief
-    *Funkcja rotacji Prostopadlosciana
-    *do kazdego kolejnego wierzcholka Prostopadlosciana wzgeledm odpowiedneij funkcji trygonometrycznej obliczamy jego umiejscownie w ukladzie wsporzenych
-    * 
-    * 
+    *Operator wyswietlania 
+    dokonujemy wyswietlenia kolejnych punktow graniastoslupa
+    *
+    *  
 
 */
-
 
 std::ostream &operator<<(std::ostream &Strm,
                          const Prostopadloscian &Pr)
@@ -135,27 +139,4 @@ std::ostream &operator<<(std::ostream &Strm,
 
     return Strm;
 }
-
-
-
-// Matrix<3> Prostopadloscian::operator *  (Matrix<3> tmp)
-// {
-//     Prostopadloscian wynik;
-//     for(int i=0; i < 8 ; ++i)
-//     {
-//         wynik[i] = *this[i] * tmp;  
-//     }
-// }
-
-
-// Prostopadloscian Prostopadloscian::operator*(Matrix<3> tmp)
-//     {
-//         Prostopadloscian wynik;
-//         for (int i = 0; i < 8; i++)
-//         {
-
-//             wynik[i] = tmp * (*this)[i];
-//         }
-//         return wynik;
-//     }
 

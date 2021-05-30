@@ -1,5 +1,14 @@
 #include "matrix3x3.hh"
 
+/*!       
+    \brief
+ |  Macierz zawierajaca funkcje trygonometryczne potrzebne do rotacji wzgledem osi OZ                              |
+ |  Argumenty:                                                                                      |
+ |      Poszczegolne elemety macierzy                                                               |
+ |  Zwraca:                                                                                         |
+ |      Odpowiednie funkcje trygonometryczne uzaleznione od kata w radianach(rad)                   |
+ */
+
 Macierz3x3 macierzobrotZ(double kat)
 {
     Macierz3x3 Wynik;
@@ -42,6 +51,15 @@ Macierz3x3 macierzobrotZ1(double kat)
 }
 
 
+/*!       
+    \brief
+ |  Macierz zawierajaca funkcje trygonometryczne potrzebne do rotacji  wzgledem osi OY                              |
+ |  Argumenty:                                                                                      |
+ |      Poszczegolne elemety macierzy                                                               |
+ |  Zwraca:                                                                                         |
+ |      Odpowiednie funkcje trygonometryczne uzaleznione od kata w radianach(rad)                   |
+ */
+
 Macierz3x3 macierzobrotY(double kat)
 {
     Macierz3x3 Wynik;
@@ -62,6 +80,15 @@ Macierz3x3 macierzobrotY(double kat)
     return Wynik;
 }
 
+/*!       
+    \brief
+ |  Macierz zawierajaca funkcje trygonometryczne potrzebne do rotacji  wzgledem osi OX                             |
+ |  Argumenty:                                                                                      |
+ |      Poszczegolne elemety macierzy                                                               |
+ |  Zwraca:                                                                                         |
+ |      Odpowiednie funkcje trygonometryczne uzaleznione od kata w radianach(rad)                   |
+ */
+
 Macierz3x3 macierzobrotX(double kat)
 {
     Macierz3x3 Wynik;
@@ -81,6 +108,16 @@ Macierz3x3 macierzobrotX(double kat)
 
     return Wynik;
 }
+
+
+/*!       
+    \brief
+ |  Macierz zawierajaca funkcje trygonometryczne                               |
+ |  Argumenty:                                                                                      |
+ |      Poszczegolne elemety macierzy                                                               |
+ |  Zwraca:                                                                                         |
+ |      Odpowiednie funkcje trygonometryczne uzaleznione od kata w radianach(rad) oraz wartosci wektora bazowego                   |
+ */
 
 Matrix<4> cztery(double alfa, double beta, double gamma, Vector<3> size)
 {

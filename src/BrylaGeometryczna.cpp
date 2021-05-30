@@ -15,6 +15,12 @@
 
 
 
+/*!       
+    \brief
+    move
+    opdopwiada za translacje poszczegolnych punktow o zadany wektor
+    w przypadku ustawienia wczesnijszego katow dla bryly posiada mozliwosc jednoczesnego obrotu
+ */
 void BrylaGeometryczna::move(const Vector<3> &v)
 {
     for (int i = 0; i < (int)pkt1.size(); i++)
@@ -25,6 +31,13 @@ void BrylaGeometryczna::move(const Vector<3> &v)
 
 /*mozna v zamienic z przesuniecie wtedy "bedzie kontakt z baza" */
 
+
+
+
+/*!       
+    \brief
+    Funkcja sluzy do obrotu bryly wzgledem srodka ukladu wsplrzednych
+ */
 
 void BrylaGeometryczna::obrotOZ(double kat)
 {
@@ -38,6 +51,14 @@ void BrylaGeometryczna::obrotOZ(double kat)
     }
 }
 
+
+
+/*!       
+    \brief
+    Funkcja sluzy do obrotu Prostopadloscianu wzgledem jego srodka
+
+        kazdy punkt przesuwamy tak aby srodek prostopadloscian znajdowal sie w srodku ukladu wspolrzednych a nastepnie wykoujemy rotacje przez co otrzymujemy obrocona obyle wzgledem jej srodka 
+ */
 
 void BrylaGeometryczna::obrotP(double kat, Vector<3> a)
 {
@@ -62,6 +83,13 @@ void BrylaGeometryczna::obrotP(double kat, Vector<3> a)
 }
 
 
+
+/*!       
+    \brief
+    Funkcja sluzy do obrotu Graniastoslupa wzgledem jego srodka
+
+    kazdy punkt przesuwamy tak aby srodek graniastoslupa znajdowal sie w srodku ukladu wspolrzednych a nastepnie wykoujemy rotacje przez co otrzymujemy obrocona obyle wzgledem jej srodka 
+ */
 
 void BrylaGeometryczna::obrotW(double kat)
 {
@@ -98,6 +126,12 @@ void BrylaGeometryczna::obrotW1(double kat,Vector<3> b)
 
 
 
+/*!       
+    \brief
+    Funkcja sluzy do zapisu bryly geometrycznej
+    zapisujemy kolejno wspolzedne kazdego z jej punktow
+    
+*/
 void BrylaGeometryczna::zapis(){
     ofstream plik;
     plik.open(nazwa_pliku_do_zapisu);

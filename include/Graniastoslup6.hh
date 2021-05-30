@@ -23,13 +23,8 @@ public:
     Graniastoslup(Vector<3> pkt, double h, double w, double d, string nazwa_pliku, string nazwa_pliku_do_zapisu);
 
  
-    // bool ZapisWspolrzednychDoPliku(const char *sNazwaPliku, Graniastoslup Pr, Vector<  3> Przesuniecie);
-
-    // void rysuj();
 };
 
-// void PrzykladZapisuWspolrzednychDoStrumienia( std::ostream&     StrmWy, Graniastoslup Graniastoslup,  /*double*/ Vector<  3>  Przesuniecie);
 
-// bool ZapisWspolrzednychDoPliku(const char *sNazwaPliku, Graniastoslup Pr);
 
 std::ostream &operator<<(std::ostream &Strm, const Graniastoslup &Pr);

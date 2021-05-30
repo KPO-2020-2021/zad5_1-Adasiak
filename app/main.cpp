@@ -213,11 +213,13 @@ int main()
        
        // Predator.obrot(90);
        // Pudzianowski.obrot(90);
+       
        // Predator.AnimacjaLotuDrona(Lacze,a,b);
        // Pudzianowski.AnimacjaLotuDrona(Lacze,a,b);
-       // double kotek=50;
-       // Predator.zwiad2(Lacze,kotek);
-       // Pudzianowski.zwiad2(Lacze,kotek); 
+
+       double kotek=50;
+       Predator.zwiad2(Lacze,kotek);
+       Pudzianowski.zwiad2(Lacze,kotek); 
        Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
        // }
        std::cout << "Naciśnij ENTER, aby kontynuowac" << std::endl;

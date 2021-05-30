@@ -53,6 +53,18 @@
 
 
 
+/*!
+    \brief
+    *Konstruktor Graniastoslupa. 
+    *Tworzymy Graniastoslupa wzgledem 1 wierzcholak (jego wspolrzednych ), 
+    * a nastepnie kolejne pkt1 dodajac do 1 wierzcholka szerokosc i wysokosc w zaleznosci od kolejnego wierzcholka
+    * 
+    * a nastepnie zapisujemy je kolejno  do odpowiedniego pliku
+    *
+    *  
+
+*/
+
 Graniastoslup::Graniastoslup(Vector<3> pkt, double h, double w, double d,string nazwa_pliku, string nazwa_pliku_do_zapisu)
 {
     this->nazwa_pliku = nazwa_pliku;
@@ -158,29 +170,14 @@ Graniastoslup::Graniastoslup(Vector<3> pkt, double h, double w, double d,string 
 }
 
 
+/*!
+    \brief
+    *Operator wyswietlania 
+    dokonujemy wyswietlenia kolejnych punktow graniastoslupa
+    *
+    *  
 
-
-// /*!
-//     \brief
-//     *Funkcja rotacji Graniastoslupa
-//     *do kazdego kolejnego wierzcholka Graniastoslupa wzgeledm odpowiedneij funkcji trygonometrycznej obliczamy jego umiejscownie w ukladzie wsporzenych
-//     *
-//     *
-
-// */
-
-
-
-// void Prostopadloscian::move(const Vector<3> &v)
-// {
-//     for (int i = 0; i < 8; i++)
-//     {
-//         pkt1[i] = pkt1[i] + v;
-//     }
-// }
-
-
-
+*/
 
 std::ostream &operator<<(std::ostream &Strm,
                          const Graniastoslup &Pr)

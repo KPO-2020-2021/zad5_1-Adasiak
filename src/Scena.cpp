@@ -35,6 +35,11 @@
 // }
 
 
+/*!       
+    \brief
+    konstryktor sceny 
+    tworzymy ja za pomoca bazowego punktu tymczasowego wzgledem ktorego dodajemy dlugosc i szerokosc
+*/
 Scena::Scena(double dlugosc, double szeroksc,double glebokosc, string nazwa_pliku, string nazwa_pliku_do_zapisu){
     this->nazwa_pliku = nazwa_pliku;
     this->nazwa_pliku_do_zapisu = nazwa_pliku_do_zapisu;
@@ -70,6 +75,10 @@ Scena::Scena(double dlugosc, double szeroksc,double glebokosc, string nazwa_plik
 
 
 
+/*!       
+    \brief
+    Funkcja sluzy do zapisu poszczegolnych punktow sceny do pliku
+ */
 void Scena::zapis()
 {
     ofstream plik;
