@@ -189,12 +189,14 @@ int main()
        Lacze.DodajNazwePliku("../datasets/wirnik2_2.dat");
        Lacze.DodajNazwePliku("../datasets/wirnik3_2.dat");
        Lacze.DodajNazwePliku("../datasets/wirnik4_2.dat");
+       Lacze.DodajNazwePliku("../datasets/czubek1_2.dat");
 
        Lacze.DodajNazwePliku("../datasets/korp4.dat");
        Lacze.DodajNazwePliku("../datasets/wirnik1_4.dat");
        Lacze.DodajNazwePliku("../datasets/wirnik2_4.dat");
        Lacze.DodajNazwePliku("../datasets/wirnik3_4.dat");
        Lacze.DodajNazwePliku("../datasets/wirnik4_4.dat");
+       Lacze.DodajNazwePliku("../datasets/czubek2_2.dat");
 
        
        // double marcin=45;
